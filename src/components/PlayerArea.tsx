@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react'
 import WaveSurfer from 'wavesurfer.js'
 import { Shuffle, Eye, EyeOff, Loader2 } from 'lucide-react'
-import type { Sample, TierMetadata, TierConfig } from '../types'
+import type { Sample, TierConfig } from '../types'
 import { fetchRandomSampleForTier } from '../lib/fetchMetadata'
 
 interface PlayerAreaProps {
@@ -18,7 +18,6 @@ function getAudioUrl(tierSlug: string, audioFile: string): string {
 export function PlayerArea({ tier, onError }: PlayerAreaProps) {
   const waveformRef = useRef<HTMLDivElement>(null)
   const wavesurferRef = useRef<WaveSurfer | null>(null)
-  const [metadata, setMetadata] = useState<TierMetadata | null>(null)
   const [sample, setSample] = useState<Sample | null>(null)
   const [loading, setLoading] = useState(true)
   const [reveal, setReveal] = useState(false)
@@ -29,14 +28,12 @@ export function PlayerArea({ tier, onError }: PlayerAreaProps) {
     setLoadError(null)
     setReveal(false)
     try {
-      const { metadata: meta, sample: s } = await fetchRandomSampleForTier(tier.slug)
-      setMetadata(meta)
+      const { sample: s } = await fetchRandomSampleForTier(tier.slug)
       setSample(s)
     } catch (e) {
       const msg = e instanceof Error ? e.message : 'Failed to load tier data'
       setLoadError(msg)
       onError?.(msg)
-      setMetadata(null)
       setSample(null)
     } finally {
       setLoading(false)
