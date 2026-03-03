@@ -6,7 +6,17 @@
   },
   "samples": [
     {
-      "audio_file": "sample_1_001.wav",
+      "audio_file": "speaker_05_3dspeaker_speaker_3D_SPK_04445.wav",
+      "transcript": "Open the trunk.",
+      "ground_truth": {
+        "tool_calls": [
+          { "tool": "open_trunk", "parameters": {} }
+        ]
+      },
+      "reasoning": "Single explicit imperative; one tool, no parameters."
+    },
+    {
+      "audio_file": "speaker_09_3dspeaker_speaker_3D_SPK_04605.wav",
       "transcript": "Open the trunk.",
       "ground_truth": {
         "tool_calls": [
