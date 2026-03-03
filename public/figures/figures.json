@@ -1,26 +1,62 @@
 [
   {
     "id": "fig1",
-    "file": "figure1.png",
-    "title": "Query generation pipeline",
-    "caption": "Overview of the Audio2Tool query generation pipeline for Tiers 1–7."
-  },
-  {
-    "id": "fig2a",
-    "file": "figure2a.png",
+    "file": "fig1_queries_per_tier.pdf",
     "title": "Queries per tier",
-    "caption": "Number of queries per complexity tier (total: 29,680)."
+    "caption": "Number of queries per complexity tier."
   },
   {
-    "id": "fig2b",
-    "file": "figure2b.png",
-    "title": "Domain distribution",
+    "id": "fig1_2",
+    "file": "fig1_2_queries_and_domain_per_tier.pdf",
+    "title": "Queries and domain per tier",
+    "caption": "Query counts and domain distribution across tiers."
+  },
+  {
+    "id": "fig2",
+    "file": "fig2_domain_per_tier.pdf",
+    "title": "Domain per tier",
     "caption": "Distribution of Smart Car, Smart Home, and Wearables across tiers."
   },
   {
-    "id": "fig2c",
-    "file": "figure2c.png",
-    "title": "Multi-intent in Tier 3",
-    "caption": "Intent count distribution in Tier 3 (2–5 tool calls per query)."
+    "id": "fig3",
+    "file": "fig3_category_distribution.pdf",
+    "title": "Category distribution",
+    "caption": "Tool category distribution across the benchmark."
+  },
+  {
+    "id": "fig4a",
+    "file": "fig4a_call_count_distribution.pdf",
+    "title": "Call count distribution",
+    "caption": "Intent count distribution (e.g. Tier 3 multi-call)."
+  },
+  {
+    "id": "fig6",
+    "file": "fig6_query_length.pdf",
+    "title": "Query length",
+    "caption": "Query length statistics across tiers."
+  },
+  {
+    "id": "fig9",
+    "file": "fig9_tool_tier_heatmap.pdf",
+    "title": "Tool–tier heatmap",
+    "caption": "Heatmap of tools across complexity tiers."
+  },
+  {
+    "id": "fig10",
+    "file": "fig10_summary_table.pdf",
+    "title": "Summary table",
+    "caption": "Benchmark summary and results table."
+  },
+  {
+    "id": "tier_h",
+    "file": "tier_creation_H.pdf",
+    "title": "Tier creation (horizontal)",
+    "caption": "Overview of tier query generation pipeline (horizontal layout)."
+  },
+  {
+    "id": "tier_v",
+    "file": "tier_creation_V.pdf",
+    "title": "Tier creation (vertical)",
+    "caption": "Overview of tier query generation pipeline (vertical layout)."
   }
 ]
