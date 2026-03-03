@@ -41,6 +41,23 @@ Open [http://localhost:5173](http://localhost:5173).
    - Source: **GitHub Actions** (recommended) or **Deploy from branch** (e.g. `gh-pages` with the contents of `dist/`).  
    - If using "Deploy from branch", push the built `dist/` contents to the chosen branch.
 
+## Results & Figures
+
+The **Results & Figures** tab shows interactive figures from the paper (e.g. query distributions, domain breakdowns). To add your own graphs:
+
+1. Put image files (PNG, JPG, SVG) in **`public/figures/`**.
+2. Edit **`public/figures/figures.json`** and add an entry per figure:
+   ```json
+   {
+     "id": "fig1",
+     "file": "your-chart.png",
+     "title": "Short title",
+     "caption": "Optional caption shown below the figure."
+   }
+   ```
+
+Figures appear in a grid; clicking one opens a lightbox. Order in the list is the display order.
+
 ## Metadata format
 
 Each tier folder (`public/audio/tier1/` … `tier8/`) should contain:

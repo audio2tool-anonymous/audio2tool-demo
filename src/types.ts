@@ -33,6 +33,13 @@ export interface TierConfig {
   challenge: string
 }
 
+export interface FigureItem {
+  id: string
+  file: string
+  title: string
+  caption: string
+}
+
 export const TIER_CONFIGS: TierConfig[] = [
   { id: 1, slug: 'tier1', name: 'Direct', subtitle: 'Single direct command', challenge: 'Simple intent recognition.' },
   { id: 2, slug: 'tier2', name: 'Parametric', subtitle: 'Slot/value extraction', challenge: 'Parameter/slot extraction.' },

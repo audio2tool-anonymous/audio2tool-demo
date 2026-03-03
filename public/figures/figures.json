@@ -1,0 +1,26 @@
+[
+  {
+    "id": "fig1",
+    "file": "figure1.png",
+    "title": "Query generation pipeline",
+    "caption": "Overview of the Audio2Tool query generation pipeline for Tiers 1–7."
+  },
+  {
+    "id": "fig2a",
+    "file": "figure2a.png",
+    "title": "Queries per tier",
+    "caption": "Number of queries per complexity tier (total: 29,680)."
+  },
+  {
+    "id": "fig2b",
+    "file": "figure2b.png",
+    "title": "Domain distribution",
+    "caption": "Distribution of Smart Car, Smart Home, and Wearables across tiers."
+  },
+  {
+    "id": "fig2c",
+    "file": "figure2c.png",
+    "title": "Multi-intent in Tier 3",
+    "caption": "Intent count distribution in Tier 3 (2–5 tool calls per query)."
+  }
+]
