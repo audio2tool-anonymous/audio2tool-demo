@@ -1,0 +1,19 @@
+{
+  "tier_info": {
+    "tier_number": 2,
+    "name": "Parametric",
+    "description": "Commands requiring parameter or slot extraction."
+  },
+  "samples": [
+    {
+      "audio_file": "sample_2_001.wav",
+      "transcript": "Set the temperature to 72.",
+      "ground_truth": {
+        "tool_calls": [
+          { "tool": "set_zone_temperature", "parameters": { "temperature": 72 } }
+        ]
+      },
+      "reasoning": "Numeric value 72 is extracted and mapped to the temperature parameter."
+    }
+  ]
+}

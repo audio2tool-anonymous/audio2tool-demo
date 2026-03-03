@@ -1,0 +1,19 @@
+{
+  "tier_info": {
+    "tier_number": 6,
+    "name": "Correction",
+    "description": "Mid-utterance repair or correction; final state overrides earlier intent."
+  },
+  "samples": [
+    {
+      "audio_file": "sample_6_001.wav",
+      "transcript": "Set an alarm for 7... wait, make it 8.",
+      "ground_truth": {
+        "tool_calls": [
+          { "tool": "set_alarm", "parameters": { "time": "08:00" } }
+        ]
+      },
+      "reasoning": "The correction 'make it 8' overrides the initial 7; only the final value is used."
+    }
+  ]
+}

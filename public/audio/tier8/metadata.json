@@ -1,0 +1,19 @@
+{
+  "tier_info": {
+    "tier_number": 8,
+    "name": "Intent Blending",
+    "description": "Multiple speakers or blended intents; primary actor focus required."
+  },
+  "samples": [
+    {
+      "audio_file": "sample_8_001.wav",
+      "transcript": "Navigate home. [Other speaker] Set temperature to 72.",
+      "ground_truth": {
+        "tool_calls": [
+          { "tool": "navigate", "parameters": { "destination": "home" } }
+        ]
+      },
+      "reasoning": "Primary driver intent is 'navigate home'; secondary speaker's temperature request is out of scope for the primary actor."
+    }
+  ]
+}

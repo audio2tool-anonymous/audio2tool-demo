@@ -1,0 +1,19 @@
+{
+  "tier_info": {
+    "tier_number": 1,
+    "name": "Direct",
+    "description": "Single direct command; simple intent recognition."
+  },
+  "samples": [
+    {
+      "audio_file": "sample_1_001.wav",
+      "transcript": "Open the trunk.",
+      "ground_truth": {
+        "tool_calls": [
+          { "tool": "open_trunk", "parameters": {} }
+        ]
+      },
+      "reasoning": "Single explicit imperative; one tool, no parameters."
+    }
+  ]
+}

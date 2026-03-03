@@ -1,0 +1,19 @@
+{
+  "tier_info": {
+    "tier_number": 4,
+    "name": "Implicit",
+    "description": "Indirect or implied intent requiring pragmatic inference."
+  },
+  "samples": [
+    {
+      "audio_file": "sample_4_001.wav",
+      "transcript": "I'm freezing.",
+      "ground_truth": {
+        "tool_calls": [
+          { "tool": "set_zone_temperature", "parameters": { "temperature": 75, "zone": "all" } }
+        ]
+      },
+      "reasoning": "User state implies a request to increase cabin temperature; no explicit command."
+    }
+  ]
+}

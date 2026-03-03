@@ -1,0 +1,19 @@
+{
+  "tier_info": {
+    "tier_number": 5,
+    "name": "Needle",
+    "description": "Long rambling speech with tangents; relevant intent must be filtered."
+  },
+  "samples": [
+    {
+      "audio_file": "sample_5_001.wav",
+      "transcript": "So anyway I was thinking about the game last night, and then I remembered I need to pick up milk, and oh could you set the temperature to 68? We're almost there.",
+      "ground_truth": {
+        "tool_calls": [
+          { "tool": "set_zone_temperature", "parameters": { "temperature": 68 } }
+        ]
+      },
+      "reasoning": "Only the final clause carries the tool-relevant intent; the rest is irrelevant context."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "tier_info": {
+    "tier_number": 7,
+    "name": "Conversation",
+    "description": "Multi-turn dialogue; intent must be tracked across 4–8 turns."
+  },
+  "samples": [
+    {
+      "audio_file": "sample_7_001.wav",
+      "transcript": "[Turn 1] Can you turn on the heat? [Turn 2] Actually just the driver side. [Turn 3] 72 degrees. [Turn 4] Thanks.",
+      "ground_truth": {
+        "tool_calls": [
+          { "tool": "set_zone_temperature", "parameters": { "zone": "driver", "temperature": 72 } }
+        ]
+      },
+      "reasoning": "Intent is built across turns: heat → driver only → 72; final tool call merges all constraints."
+    }
+  ]
+}
