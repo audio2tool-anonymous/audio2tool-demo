@@ -9,9 +9,9 @@ interface SidebarProps {
 
 export function Sidebar({ tiers, selectedTierId, onSelectTier }: SidebarProps) {
   return (
-    <aside className="w-56 shrink-0 border-r border-border bg-surface-elevated flex flex-col">
-      <div className="p-4 border-b border-border">
-        <div className="flex items-center gap-2 text-sm font-medium text-zinc-400">
+    <aside className="w-56 shrink-0 border-r border-zinc-200 bg-white flex flex-col">
+      <div className="p-4 border-b border-zinc-200">
+        <div className="flex items-center gap-2 text-sm font-medium text-zinc-600">
           <Layers className="h-4 w-4" />
           Complexity Tiers
         </div>
@@ -27,8 +27,8 @@ export function Sidebar({ tiers, selectedTierId, onSelectTier }: SidebarProps) {
               className={`
                 w-full text-left rounded-lg px-3 py-2.5 text-sm transition-colors
                 ${isSelected
-                  ? 'bg-accent-muted text-white font-medium'
-                  : 'text-zinc-400 hover:bg-surface-muted hover:text-zinc-200'}
+                  ? 'bg-blue-100 text-blue-800 font-medium'
+                  : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-800'}
               `}
             >
               <span className="block font-medium">Tier {tier.id}</span>

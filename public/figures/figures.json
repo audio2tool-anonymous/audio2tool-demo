@@ -3,13 +3,7 @@
     "id": "fig1",
     "file": "fig1_queries_per_tier.pdf",
     "title": "Queries per tier",
-    "caption": "Number of queries per complexity tier."
-  },
-  {
-    "id": "fig1_2",
-    "file": "fig1_2_queries_and_domain_per_tier.pdf",
-    "title": "Queries and domain per tier",
-    "caption": "Query counts and domain distribution across tiers."
+    "caption": "Number of queries per complexity tier (total: 29,680)."
   },
   {
     "id": "fig2",
@@ -18,45 +12,9 @@
     "caption": "Distribution of Smart Car, Smart Home, and Wearables across tiers."
   },
   {
-    "id": "fig3",
-    "file": "fig3_category_distribution.pdf",
-    "title": "Category distribution",
-    "caption": "Tool category distribution across the benchmark."
-  },
-  {
-    "id": "fig4a",
-    "file": "fig4a_call_count_distribution.pdf",
-    "title": "Call count distribution",
-    "caption": "Intent count distribution (e.g. Tier 3 multi-call)."
-  },
-  {
-    "id": "fig6",
-    "file": "fig6_query_length.pdf",
-    "title": "Query length",
-    "caption": "Query length statistics across tiers."
-  },
-  {
-    "id": "fig9",
-    "file": "fig9_tool_tier_heatmap.pdf",
-    "title": "Tool–tier heatmap",
-    "caption": "Heatmap of tools across complexity tiers."
-  },
-  {
-    "id": "fig10",
-    "file": "fig10_summary_table.pdf",
-    "title": "Summary table",
-    "caption": "Benchmark summary and results table."
-  },
-  {
     "id": "tier_h",
     "file": "tier_creation_H.pdf",
-    "title": "Tier creation (horizontal)",
-    "caption": "Overview of tier query generation pipeline (horizontal layout)."
-  },
-  {
-    "id": "tier_v",
-    "file": "tier_creation_V.pdf",
-    "title": "Tier creation (vertical)",
-    "caption": "Overview of tier query generation pipeline (vertical layout)."
+    "title": "Tier creation pipeline",
+    "caption": "Overview of query generation for each complexity tier."
   }
 ]

@@ -64,13 +64,13 @@ function SampleCard({ sample, tierSlug, onPlayRequest }: SampleCardProps) {
   }
 
   return (
-    <div className="rounded-xl border border-border bg-surface-elevated overflow-hidden">
+    <div className="rounded-xl border border-zinc-200 bg-white overflow-hidden shadow-sm">
       <div className="flex items-stretch gap-3 p-3">
         <button
           type="button"
           onClick={handlePlayClick}
           disabled={!ready}
-          className="shrink-0 w-12 h-12 rounded-full bg-accent hover:bg-blue-600 flex items-center justify-center text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-surface-elevated"
+          className="shrink-0 w-12 h-12 rounded-full bg-accent hover:bg-blue-600 flex items-center justify-center text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-white"
           aria-label={playing ? 'Pause' : 'Play'}
         >
           {playing ? (
@@ -81,11 +81,11 @@ function SampleCard({ sample, tierSlug, onPlayRequest }: SampleCardProps) {
         </button>
         <div
           ref={containerRef}
-          className="flex-1 min-h-[72px] rounded-lg bg-surface-muted border border-border overflow-hidden"
+          className="flex-1 min-h-[72px] rounded-lg bg-zinc-100 border border-zinc-200 overflow-hidden"
         />
       </div>
       <div className="px-4 pb-4 pt-1">
-        <p className="text-sm text-zinc-300 rounded-lg bg-surface-muted p-3 border border-border">
+        <p className="text-sm text-zinc-700 rounded-lg bg-zinc-50 p-3 border border-zinc-200">
           &ldquo;{sample.transcript}&rdquo;
         </p>
       </div>
@@ -127,7 +127,7 @@ export function PlayerArea({ tier, onError }: PlayerAreaProps) {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center py-16 text-zinc-500">
+      <div className="flex flex-col items-center justify-center py-16 text-zinc-600">
         <Loader2 className="h-8 w-8 animate-spin mb-4" />
         <p>Loading tier data…</p>
       </div>
@@ -136,12 +136,12 @@ export function PlayerArea({ tier, onError }: PlayerAreaProps) {
 
   if (loadError) {
     return (
-      <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-4 text-red-400">
+      <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-700">
         <p className="font-medium">Could not load tier</p>
         <p className="text-sm mt-1">{loadError}</p>
-        <p className="text-xs mt-2 text-zinc-500">
-          Ensure <code className="bg-surface-muted px-1 rounded">/audio/{tier.slug}/metadata.json</code> exists
-          and the dev server or GitHub Pages is serving the <code className="bg-surface-muted px-1 rounded">public/</code> folder.
+        <p className="text-xs mt-2 text-zinc-600">
+          Ensure <code className="bg-white px-1 rounded">/audio/{tier.slug}/metadata.json</code> exists
+          and the dev server or GitHub Pages is serving the <code className="bg-white px-1 rounded">public/</code> folder.
         </p>
       </div>
     )
@@ -149,7 +149,7 @@ export function PlayerArea({ tier, onError }: PlayerAreaProps) {
 
   if (samples.length === 0) {
     return (
-      <div className="rounded-lg border border-border bg-surface-muted p-4 text-zinc-400">
+      <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-zinc-600">
         <p>No samples in metadata for this tier.</p>
       </div>
     )

@@ -8,17 +8,17 @@ export default {
     extend: {
       colors: {
         surface: {
-          DEFAULT: '#0f0f0f',
-          elevated: '#161616',
-          muted: '#1a1a1a',
+          DEFAULT: '#fafafa',
+          elevated: '#ffffff',
+          muted: '#f4f4f5',
         },
         border: {
-          DEFAULT: '#2a2a2a',
-          subtle: '#1f1f1f',
+          DEFAULT: '#e4e4e7',
+          subtle: '#f4f4f5',
         },
         accent: {
-          DEFAULT: '#3b82f6',
-          muted: '#1e3a5f',
+          DEFAULT: '#2563eb',
+          muted: '#dbeafe',
         },
       },
       fontFamily: {
