@@ -39,3 +39,15 @@ export async function fetchRandomSampleForTier(tierSlug: string): Promise<{
   const sample = getRandomSample(metadata)
   return { metadata, sample }
 }
+
+/** Max number of samples to show per tier (2–3). */
+const MAX_SAMPLES_PER_TIER = 3
+
+/**
+ * Fetches tier metadata and returns up to MAX_SAMPLES_PER_TIER samples for display.
+ */
+export async function fetchSamplesForTier(tierSlug: string): Promise<Sample[]> {
+  const metadata = await fetchTierMetadata(tierSlug)
+  const samples = metadata.samples ?? []
+  return samples.slice(0, MAX_SAMPLES_PER_TIER)
+}

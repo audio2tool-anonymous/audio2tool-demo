@@ -1,7 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Image, X, Loader2 } from 'lucide-react'
+import { Image, X, Loader2, FileText } from 'lucide-react'
 import type { FigureItem } from '../types'
 import { fetchFigures, getFigureImageUrl } from '../lib/fetchFigures'
+
+function isPdf(file: string) {
+  return file.toLowerCase().endsWith('.pdf')
+}
 
 export function FiguresSection() {
   const [figures, setFigures] = useState<FigureItem[]>([])
@@ -63,17 +67,24 @@ export function FiguresSection() {
             className="group text-left rounded-xl border border-border bg-surface-elevated overflow-hidden hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-[#0a0a0a]"
           >
             <div className="aspect-video bg-surface-muted flex items-center justify-center overflow-hidden">
-              <img
-                src={getFigureImageUrl(fig.file)}
-                alt={fig.title}
-                className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-200"
-                loading="lazy"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'data:image/svg+xml,' + encodeURIComponent(
-                    `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="225" viewBox="0 0 400 225"><rect fill="#1a1a1a" width="400" height="225"/><text x="200" y="115" fill="#52525b" font-family="sans-serif" font-size="14" text-anchor="middle">${fig.file}</text></svg>`
-                  )
-                }}
-              />
+              {isPdf(fig.file) ? (
+                <div className="flex flex-col items-center gap-2 text-zinc-500 group-hover:text-accent transition-colors">
+                  <FileText className="h-16 w-16" />
+                  <span className="text-xs font-medium">PDF</span>
+                </div>
+              ) : (
+                <img
+                  src={getFigureImageUrl(fig.file)}
+                  alt={fig.title}
+                  className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-200"
+                  loading="lazy"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'data:image/svg+xml,' + encodeURIComponent(
+                      `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="225" viewBox="0 0 400 225"><rect fill="#1a1a1a" width="400" height="225"/><text x="200" y="115" fill="#52525b" font-family="sans-serif" font-size="14" text-anchor="middle">${fig.file}</text></svg>`
+                    )
+                  }}
+                />
+              )}
             </div>
             <div className="p-4">
               <h3 className="font-semibold text-white group-hover:text-accent transition-colors">{fig.title}</h3>
@@ -103,11 +114,21 @@ export function FiguresSection() {
             className="relative max-w-5xl max-h-[90vh] w-full flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={getFigureImageUrl(lightbox.file)}
-              alt={lightbox.title}
-              className="max-h-[80vh] w-full object-contain rounded-lg shadow-2xl"
-            />
+            {isPdf(lightbox.file) ? (
+              <embed
+                src={getFigureImageUrl(lightbox.file)}
+                type="application/pdf"
+                className="w-full rounded-lg shadow-2xl bg-white min-h-[70vh]"
+                style={{ height: '75vh' }}
+                title={lightbox.title}
+              />
+            ) : (
+              <img
+                src={getFigureImageUrl(lightbox.file)}
+                alt={lightbox.title}
+                className="max-h-[80vh] w-full object-contain rounded-lg shadow-2xl"
+              />
+            )}
             <div className="mt-4 text-center">
               <p className="font-semibold text-white">{lightbox.title}</p>
               <p className="text-sm text-zinc-400 mt-1">{lightbox.caption}</p>

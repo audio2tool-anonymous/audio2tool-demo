@@ -1,8 +1,8 @@
 import { useRef, useEffect, useState } from 'react'
 import WaveSurfer from 'wavesurfer.js'
-import { Shuffle, Eye, EyeOff, Loader2 } from 'lucide-react'
+import { Play, Pause, Loader2 } from 'lucide-react'
 import type { Sample, TierConfig } from '../types'
-import { fetchRandomSampleForTier } from '../lib/fetchMetadata'
+import { fetchSamplesForTier } from '../lib/fetchMetadata'
 
 interface PlayerAreaProps {
   tier: TierConfig
@@ -15,59 +15,115 @@ function getAudioUrl(tierSlug: string, audioFile: string): string {
   return `${path}audio/${tierSlug}/${audioFile}`
 }
 
-export function PlayerArea({ tier, onError }: PlayerAreaProps) {
-  const waveformRef = useRef<HTMLDivElement>(null)
+interface SampleCardProps {
+  sample: Sample
+  tierSlug: string
+  onPlayRequest: (ws: WaveSurfer) => void
+}
+
+function SampleCard({ sample, tierSlug, onPlayRequest }: SampleCardProps) {
+  const containerRef = useRef<HTMLDivElement>(null)
   const wavesurferRef = useRef<WaveSurfer | null>(null)
-  const [sample, setSample] = useState<Sample | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [reveal, setReveal] = useState(false)
-  const [loadError, setLoadError] = useState<string | null>(null)
-
-  const loadSample = async () => {
-    setLoading(true)
-    setLoadError(null)
-    setReveal(false)
-    try {
-      const { sample: s } = await fetchRandomSampleForTier(tier.slug)
-      setSample(s)
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : 'Failed to load tier data'
-      setLoadError(msg)
-      onError?.(msg)
-      setSample(null)
-    } finally {
-      setLoading(false)
-    }
-  }
+  const [playing, setPlaying] = useState(false)
+  const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    loadSample()
-  }, [tier.slug])
+    if (!containerRef.current || !sample.audio_file) return
 
-  useEffect(() => {
-    if (!waveformRef.current || !sample?.audio_file) return
-
-    const url = getAudioUrl(tier.slug, sample.audio_file)
+    const url = getAudioUrl(tierSlug, sample.audio_file)
     const ws = WaveSurfer.create({
-      container: waveformRef.current,
+      container: containerRef.current,
       waveColor: '#3b82f6',
       progressColor: '#60a5fa',
       cursorColor: '#93c5fd',
       barWidth: 2,
       barGap: 1,
       barRadius: 1,
-      height: 80,
+      height: 72,
       normalize: true,
       url,
     })
 
-    wavesurferRef.current = ws
+    ws.on('ready', () => setReady(true))
+    ws.on('play', () => setPlaying(true))
+    ws.on('pause', () => setPlaying(false))
+    ws.on('finish', () => setPlaying(false))
 
+    wavesurferRef.current = ws
     return () => {
       ws.destroy()
       wavesurferRef.current = null
     }
-  }, [tier.slug, sample?.audio_file])
+  }, [tierSlug, sample.audio_file])
+
+  const handlePlayClick = () => {
+    const ws = wavesurferRef.current
+    if (!ws) return
+    onPlayRequest(ws)
+    ws.playPause()
+  }
+
+  return (
+    <div className="rounded-xl border border-border bg-surface-elevated overflow-hidden">
+      <div className="flex items-stretch gap-3 p-3">
+        <button
+          type="button"
+          onClick={handlePlayClick}
+          disabled={!ready}
+          className="shrink-0 w-12 h-12 rounded-full bg-accent hover:bg-blue-600 flex items-center justify-center text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-surface-elevated"
+          aria-label={playing ? 'Pause' : 'Play'}
+        >
+          {playing ? (
+            <Pause className="h-5 w-5" fill="currentColor" />
+          ) : (
+            <Play className="h-5 w-5 ml-0.5" fill="currentColor" />
+          )}
+        </button>
+        <div
+          ref={containerRef}
+          className="flex-1 min-h-[72px] rounded-lg bg-surface-muted border border-border overflow-hidden"
+        />
+      </div>
+      <div className="px-4 pb-4 pt-1">
+        <p className="text-sm text-zinc-300 rounded-lg bg-surface-muted p-3 border border-border">
+          &ldquo;{sample.transcript}&rdquo;
+        </p>
+      </div>
+    </div>
+  )
+}
+
+export function PlayerArea({ tier, onError }: PlayerAreaProps) {
+  const [samples, setSamples] = useState<Sample[]>([])
+  const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState<string | null>(null)
+  const activeWsRef = useRef<WaveSurfer | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+    setLoading(true)
+    setLoadError(null)
+    fetchSamplesForTier(tier.slug)
+      .then((list) => {
+        if (!cancelled) setSamples(list)
+      })
+      .catch((e) => {
+        const msg = e instanceof Error ? e.message : 'Failed to load tier data'
+        if (!cancelled) setLoadError(msg)
+        onError?.(msg)
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false)
+      })
+    return () => { cancelled = true }
+  }, [tier.slug, onError])
+
+  const handlePlayRequest = (ws: WaveSurfer) => {
+    if (activeWsRef.current && activeWsRef.current !== ws) {
+      activeWsRef.current.pause()
+    }
+    activeWsRef.current = ws
+  }
 
   if (loading) {
     return (
@@ -84,13 +140,14 @@ export function PlayerArea({ tier, onError }: PlayerAreaProps) {
         <p className="font-medium">Could not load tier</p>
         <p className="text-sm mt-1">{loadError}</p>
         <p className="text-xs mt-2 text-zinc-500">
-          Ensure <code className="bg-surface-muted px-1 rounded">/audio/{tier.slug}/metadata.json</code> exists and the dev server or GitHub Pages is serving the <code className="bg-surface-muted px-1 rounded">public/</code> folder.
+          Ensure <code className="bg-surface-muted px-1 rounded">/audio/{tier.slug}/metadata.json</code> exists
+          and the dev server or GitHub Pages is serving the <code className="bg-surface-muted px-1 rounded">public/</code> folder.
         </p>
       </div>
     )
   }
 
-  if (!sample) {
+  if (samples.length === 0) {
     return (
       <div className="rounded-lg border border-border bg-surface-muted p-4 text-zinc-400">
         <p>No samples in metadata for this tier.</p>
@@ -100,54 +157,14 @@ export function PlayerArea({ tier, onError }: PlayerAreaProps) {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center gap-3">
-        <button
-          type="button"
-          onClick={loadSample}
-          className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-blue-600 transition-colors"
-        >
-          <Shuffle className="h-4 w-4" />
-          Randomize
-        </button>
-        <button
-          type="button"
-          onClick={() => setReveal((r) => !r)}
-          className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface-elevated px-4 py-2 text-sm font-medium text-zinc-300 hover:bg-surface-muted transition-colors"
-        >
-          {reveal ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-          {reveal ? 'Hide' : 'Reveal'} Ground Truth
-        </button>
-      </div>
-
-      <div>
-        <p className="text-sm font-medium text-zinc-400 mb-1">Transcript</p>
-        <p className="text-zinc-200 rounded-lg bg-surface-muted p-3 border border-border">
-          &ldquo;{sample.transcript}&rdquo;
-        </p>
-      </div>
-
-      <div>
-        <p className="text-sm font-medium text-zinc-400 mb-2">Waveform</p>
-        <div
-          ref={waveformRef}
-          className="rounded-lg bg-surface-muted border border-border overflow-hidden min-h-[80px]"
+      {samples.map((sample, index) => (
+        <SampleCard
+          key={`${sample.audio_file}-${index}`}
+          sample={sample}
+          tierSlug={tier.slug}
+          onPlayRequest={handlePlayRequest}
         />
-      </div>
-
-      {reveal && (
-        <div className="space-y-4 rounded-lg border border-border bg-surface-muted p-4">
-          <div>
-            <p className="text-sm font-medium text-zinc-400 mb-1">Ground Truth Tool Call(s)</p>
-            <pre className="text-sm text-emerald-300/90 bg-black/30 p-3 rounded overflow-x-auto font-mono">
-              {JSON.stringify(sample.ground_truth.tool_calls, null, 2)}
-            </pre>
-          </div>
-          <div>
-            <p className="text-sm font-medium text-zinc-400 mb-1">Reasoning</p>
-            <p className="text-sm text-zinc-300">{sample.reasoning}</p>
-          </div>
-        </div>
-      )}
+      ))}
     </div>
   )
 }
