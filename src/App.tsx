@@ -36,22 +36,8 @@ export default function App() {
               onClick={scrollToDataset}
               className="text-sm font-medium text-zinc-600 hover:text-zinc-900"
             >
-              Dataset
+              Explore the dataset
             </button>
-            <a
-              href="#"
-              className="text-sm font-medium text-blue-600 hover:text-blue-700"
-              aria-label="Paper"
-            >
-              Paper
-            </a>
-            <a
-              href="#"
-              className="text-sm font-medium text-blue-600 hover:text-blue-700"
-              aria-label="Code"
-            >
-              Code
-            </a>
           </nav>
         </div>
       </header>
@@ -72,40 +58,23 @@ export default function App() {
             {CONFERENCE}
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
-            <a
-              href="#"
-              className="inline-flex items-center rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50"
-            >
-              Paper
-            </a>
-            <a
-              href="#"
-              className="inline-flex items-center rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50"
-            >
-              Code
-            </a>
             <button
               type="button"
               onClick={scrollToDataset}
               className="inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
             >
-              Dataset & Samples
+              Explore the dataset
             </button>
           </div>
         </section>
 
-        {/* Overview: Abstract + Figures + Taxonomy */}
+        {/* Overview: Abstract then Taxonomy */}
         <section id="overview" className="border-t border-zinc-100 bg-zinc-50/50">
           <div className="max-w-4xl mx-auto px-6 py-12">
             <h2 className="text-2xl font-bold text-zinc-900 mb-4">Abstract</h2>
             <p className="text-zinc-700 leading-relaxed max-w-3xl">
               {ABSTRACT}
             </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto px-6 pb-12">
-            <h2 className="text-2xl font-bold text-zinc-900 mb-6">Key Results</h2>
-            <FiguresSection />
           </div>
 
           <div className="max-w-4xl mx-auto px-6 pb-16">
@@ -147,6 +116,14 @@ export default function App() {
                 <PlayerArea tier={selectedTier} />
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Key Results: figures */}
+        <section className="border-t border-zinc-200 bg-zinc-50/50">
+          <div className="max-w-4xl mx-auto px-6 py-12 pb-16">
+            <h2 className="text-2xl font-bold text-zinc-900 mb-6">Key Results</h2>
+            <FiguresSection />
           </div>
         </section>
 
