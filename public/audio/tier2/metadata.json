@@ -6,7 +6,7 @@
   },
   "samples": [
     {
-      "audio_file": "speaker_00_voxpopuli_speaker_124830.wav",
+      "audio_file": "speaker_05_3dspeaker_speaker_3D_SPK_10898.wav",
       "transcript": "Driver climate twenty three degrees and fan level five",
       "ground_truth": {
         "tool_calls": [
@@ -22,7 +22,7 @@
       "reasoning": ""
     },
     {
-      "audio_file": "speaker_01_voxpopuli_speaker_129073.wav",
+      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_07983.wav",
       "transcript": "Cool mode on thermostat at seventy degrees and ramp the bedroom lights to eighty percent over fifteen minutes",
       "ground_truth": {
         "tool_calls": [
@@ -37,7 +37,7 @@
       "reasoning": ""
     },
     {
-      "audio_file": "speaker_02_3dspeaker_speaker_3D_SPK_05744.wav",
+      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_01062.wav",
       "transcript": "What is my H R V today, and make my phone ring",
       "ground_truth": {
         "tool_calls": [

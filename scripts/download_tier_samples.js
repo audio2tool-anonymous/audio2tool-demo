@@ -156,26 +156,35 @@ function main() {
 
     for (let sampleIdx = 0; sampleIdx < 3; sampleIdx++) {
       const rowIndex = rowIndices[sampleIdx];
-      const row = parseCsvRow(lines[rowIndex + 1]);
-      const query = (row[queryIdx] || '').trim();
-      const toolName = (row[toolNameIdx] || '').trim();
-      const extractedParams = extractedIdx >= 0 ? parseParams((row[extractedIdx] || '').trim()) : {};
-      if (!query || !toolName) continue;
 
-      const queryFolder = `query_${String(rowIndex).padStart(5, '0')}`;
-      const s3List = run(`aws s3 ls "${S3_AUDIO_PREFIX}${folder}/${queryFolder}/"`);
-      const wavLines = s3List.split('\n').filter((l) => l.trim().endsWith('.wav'));
+      // Prefer 3dspeaker WAVs only (no voxpopuli)
+      let rowIndexToUse = rowIndex;
+      let wavLines = [];
+      for (let attempt = 0; attempt < 50 && rowIndexToUse + 1 < lines.length; attempt++) {
+        const queryFolder = `query_${String(rowIndexToUse).padStart(5, '0')}`;
+        const s3List = run(`aws s3 ls "${S3_AUDIO_PREFIX}${folder}/${queryFolder}/"`);
+        const allWavs = s3List.split('\n').filter((l) => l.trim().endsWith('.wav'));
+        wavLines = allWavs.filter((l) => /3dspeaker|3d_speaker/i.test(l.trim().split(/\s+/).pop() || ''));
+        if (wavLines.length > 0) break;
+        rowIndexToUse++;
+      }
       if (wavLines.length === 0) {
-        console.warn(`Tier ${tier} row ${rowIndex}: no wav found`);
+        console.warn(`Tier ${tier}: no 3dspeaker wav found for row ${rowIndex} and following, skip sample ${sampleIdx + 1}`);
         continue;
       }
-      // Pick a different speaker per sample: use sampleIdx to choose wav (0th, 1st, 2nd in list)
+      const queryFolder = `query_${String(rowIndexToUse).padStart(5, '0')}`;
+      const rowToUse = parseCsvRow(lines[rowIndexToUse + 1]);
+      const query = (rowToUse[queryIdx] || '').trim();
+      const toolName = (rowToUse[toolNameIdx] || '').trim();
+      const extractedParams = extractedIdx >= 0 ? parseParams((rowToUse[extractedIdx] || '').trim()) : {};
+      if (!query || !toolName) continue;
+      // Pick a different speaker per sample: use sampleIdx to choose wav (0th, 1st, 2nd in 3dspeaker list)
       const wavIndex = Math.min(sampleIdx, wavLines.length - 1);
       const wavName = wavLines[wavIndex].trim().split(/\s+/).pop();
       const s3Wav = `${S3_AUDIO_PREFIX}${folder}/${queryFolder}/${wavName}`;
       const localWav = path.join(outDir, wavName);
 
-      console.log(`Tier ${tier} sample ${sampleIdx + 1} (query ${rowIndex}, speaker ${wavIndex}): ${wavName}`);
+      console.log(`Tier ${tier} sample ${sampleIdx + 1} (query ${rowIndexToUse}, 3dspeaker ${wavIndex}): ${wavName}`);
       run(`aws s3 cp "${s3Wav}" "${localWav}"`);
 
       samples.push({

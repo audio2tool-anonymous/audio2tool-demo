@@ -6,7 +6,7 @@
   },
   "samples": [
     {
-      "audio_file": "speaker_00_voxpopuli_speaker_124830.wav",
+      "audio_file": "speaker_05_3dspeaker_speaker_3D_SPK_10898.wav",
       "transcript": "This song always reminds me of college, good times. Man, I feel old. Um, it's a little hot on my side, can you set the driver's temp to sixteen degrees?",
       "ground_truth": {
         "tool_calls": [
@@ -19,7 +19,7 @@
       "reasoning": ""
     },
     {
-      "audio_file": "speaker_01_voxpopuli_speaker_129073.wav",
+      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_07983.wav",
       "transcript": "The room is not really hot or cold, I just want that soft background fan sound to fall asleep, so, like, can you put the thermostat into Fan_Only mode",
       "ground_truth": {
         "tool_calls": [
@@ -32,7 +32,7 @@
       "reasoning": ""
     },
     {
-      "audio_file": "speaker_02_3dspeaker_speaker_3D_SPK_05744.wav",
+      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_01062.wav",
       "transcript": "Last week I quit energy drinks cold turkey, which gave me headaches, and I am hoping my body is recovering, so can you grab my HRV for the last week so I can see if it is improving",
       "ground_truth": {
         "tool_calls": [

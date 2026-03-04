@@ -6,7 +6,7 @@
   },
   "samples": [
     {
-      "audio_file": "speaker_00_voxpopuli_speaker_124830.wav",
+      "audio_file": "speaker_05_3dspeaker_speaker_3D_SPK_10898.wav",
       "transcript": "Driver zone twenty one degrees and turn on steering wheel heater",
       "ground_truth": {
         "tool_calls": [
@@ -22,7 +22,7 @@
       "reasoning": ""
     },
     {
-      "audio_file": "speaker_01_voxpopuli_speaker_129073.wav",
+      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_07983.wav",
       "transcript": "Set thermostat to Cool then dim the office lights to forty percent",
       "ground_truth": {
         "tool_calls": [
@@ -37,7 +37,7 @@
       "reasoning": ""
     },
     {
-      "audio_file": "speaker_02_3dspeaker_speaker_3D_SPK_05744.wav",
+      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_01062.wav",
       "transcript": "Show my heart rate variability for yesterday and also turn on do not disturb plus ring my paired phone",
       "ground_truth": {
         "tool_calls": [

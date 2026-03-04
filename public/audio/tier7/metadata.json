@@ -19,8 +19,8 @@
       "reasoning": ""
     },
     {
-      "audio_file": "turn_01_agent_yodas_speaker_z2hPI6d00BE.wav",
-      "transcript": "USER: I think it's a bit chilly in here, can you, uh, make it warmer?\nAGENT: You'd like to adjust the thermostat, but I'm not sure what mode you're referring to. Could you please clarify?\nUSER: Oh, I mean, can you set it to, um, 'Warming' mode?\nAGENT: I think there might be some confusion. The available modes are Heat, Cool, Auto, Off, Fan_Only, and Eco. Could you please choose one of these modes?\nUSER: Ah, I see! In that case, can you please set it to Heat mode?",
+      "audio_file": "turn_01_agent_3dspeaker_speaker_3D_SPK_09044.wav",
+      "transcript": "USER: ugh… it's so hot in here\nAGENT: I can help with that. Sounds like you'd like the thermostat to start cooling. Do you want me to switch your thermostat to Cool mode?\nUSER: mm… yeah… put it on cool",
       "ground_truth": {
         "tool_calls": [
           {
