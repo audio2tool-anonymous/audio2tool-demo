@@ -84,10 +84,31 @@ function SampleCard({ sample, tierSlug, onPlayRequest }: SampleCardProps) {
           className="flex-1 min-h-[72px] rounded-lg bg-zinc-100 border border-zinc-200 overflow-hidden"
         />
       </div>
-      <div className="px-4 pb-4 pt-1">
+      <div className="px-4 pb-4 pt-1 space-y-3">
         <p className="text-sm text-zinc-700 rounded-lg bg-zinc-50 p-3 border border-zinc-200">
           &ldquo;{sample.transcript}&rdquo;
         </p>
+        {sample.ground_truth?.tool_calls?.length > 0 && (
+          <div className="rounded-lg border border-zinc-200 bg-zinc-50/80 p-3">
+            <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">Ground truth</p>
+            <ul className="space-y-2">
+              {sample.ground_truth.tool_calls.map((tc, i) => (
+                <li key={i} className="text-sm">
+                  <span className="font-medium text-zinc-800">Tool:</span>{' '}
+                  <code className="text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">{tc.tool}</code>
+                  {Object.keys(tc.parameters ?? {}).length > 0 && (
+                    <>
+                      <span className="font-medium text-zinc-800 ml-2">Parameters:</span>{' '}
+                      <code className="text-zinc-700 text-xs bg-white px-1.5 py-0.5 rounded border border-zinc-200">
+                        {JSON.stringify(tc.parameters)}
+                      </code>
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   )
