@@ -6,17 +6,17 @@
   },
   "samples": [
     {
-      "audio_file": "conv0_turn_00_user_3dspeaker_speaker_3D_SPK_05228.wav",
+      "audio_file": "conv0_turn_00_user_3dspeaker_speaker_3D_SPK_00481.wav",
       "audio_files": [
-        "conv0_turn_00_user_3dspeaker_speaker_3D_SPK_05228.wav",
-        "conv0_turn_02_user_3dspeaker_speaker_3D_SPK_05228.wav",
-        "conv0_turn_04_user_3dspeaker_speaker_3D_SPK_05228.wav"
+        "conv0_turn_00_user_3dspeaker_speaker_3D_SPK_00481.wav",
+        "conv0_turn_01_agent_ecapa_speaker_35282.wav",
+        "conv0_turn_02_user_3dspeaker_speaker_3D_SPK_00481.wav"
       ],
-      "transcript": "USER: Excuse me, can you help me with the temperature in the car? I'm feeling a bit warm.\nAGENT: I'd be happy to help you adjust the temperature. Which zone would you like to adjust the temperature for? We have Driver, Passenger, Rear Left, and Rear Right.\nUSER: Oh, um, I think it's the, uh, Passenger side that's too warm.\nAGENT: Alright! What temperature would you like to set it to? Please keep in mind it should be between 15.0 and 30.0 degrees.\nUSER: Ah, 22.0 degrees should be nice, thank you.",
+      "transcript": "USER: You know, I've been having the strangest issues with my internet lately. It reminds me of back in 2015 when I lived in that apartment complex with the terrible wiring - you remember the one, with the green shutters and that peculiar smell in the hallway? Anyway, I think I need to check if my router is working properly. Can you run a bandwidth test?\n\nAGENT: I'd be happy to help check your internet connection. Just to confirm, would you like me to run a network speed test to check your internet performance?\n\nUSER: Oh goodness, not a bandwidth test! What was I thinking? That's what my cousin Marvin always calls it, but he's not exactly tech-savvy, bless his heart. He once tried to download more RAM to his computer - can you believe it? Anyway, yes, what I actually need is a network speed test. My video calls keep freezing, and I've got this important Zoom meeting with my book club tomorrow where we're discussing that fascinating historical fiction novel about the Spanish Armada, and I simply can't miss it because I volunteered to lead the discussion.",
       "ground_truth": {
         "tool_calls": [
           {
-            "tool": "setZoneTemperature",
+            "tool": "runNetworkSpeedTest",
             "parameters": {}
           }
         ]
@@ -24,15 +24,17 @@
       "reasoning": ""
     },
     {
-      "audio_file": "conv1_turn_01_agent_3dspeaker_speaker_3D_SPK_09044.wav",
+      "audio_file": "conv1_turn_00_user_3dspeaker_speaker_3D_SPK_01831.wav",
       "audio_files": [
-        "conv1_turn_01_agent_3dspeaker_speaker_3D_SPK_09044.wav"
+        "conv1_turn_00_user_3dspeaker_speaker_3D_SPK_01831.wav",
+        "conv1_turn_01_agent_ecapa_speaker_49394.wav",
+        "conv1_turn_02_user_3dspeaker_speaker_3D_SPK_01831.wav"
       ],
-      "transcript": "USER: ugh… it's so hot in here\nAGENT: I can help with that. Sounds like you'd like the thermostat to start cooling. Do you want me to switch your thermostat to Cool mode?\nUSER: mm… yeah… put it on cool",
+      "transcript": "USER: Can't you see I'm bored? I want to play a game.\nAGENT: I'd be happy to launch a game for you. Which one would you like to play? We have Solitaire, Chess, Racing, or Arcade.\nUSER: Ugh, just launch Solitaire already.",
       "ground_truth": {
         "tool_calls": [
           {
-            "tool": "setThermostatMode",
+            "tool": "launchInCarGaming",
             "parameters": {}
           }
         ]
@@ -40,17 +42,17 @@
       "reasoning": ""
     },
     {
-      "audio_file": "conv2_turn_00_user_3dspeaker_speaker_3D_SPK_09068.wav",
+      "audio_file": "conv2_turn_00_user_3dspeaker_speaker_3D_SPK_07983.wav",
       "audio_files": [
-        "conv2_turn_00_user_3dspeaker_speaker_3D_SPK_09068.wav",
-        "conv2_turn_01_agent_3dspeaker_speaker_3D_SPK_04703.wav",
-        "conv2_turn_02_user_3dspeaker_speaker_3D_SPK_09068.wav"
+        "conv2_turn_00_user_3dspeaker_speaker_3D_SPK_07983.wav",
+        "conv2_turn_01_agent_yodas_speaker_O4dHRrkWP2M.wav",
+        "conv2_turn_02_user_3dspeaker_speaker_3D_SPK_07983.wav"
       ],
-      "transcript": "USER: My watch keep talk about this HRV thing, but I not really catch what is it. It is like stress meter or just heart jumping counter?\nAGENT: Heart Rate Variability (HRV) is a measure of the tiny time differences between your heartbeats. It's often used as an indicator of how recovered or stressed your body is: generally, higher HRV means better recovery and adaptability, while lower HRV can mean fatigue, stress, or overtraining. Your watch looks at these variations over time to estimate things like stress, readiness, and sometimes even sleep quality. I can also pull your HRV numbers for a specific time frame if you want to see how it's been.\nUSER: Ah, ok, so more is not always bad then. Yesterday I also eat too much salty chips… maybe also break my HRV, haha. By the way, my friend just buy new smart ring, so shiny, looks like from space movie. Mine just boring rubber band. Anyway, I want to see how this HRV going for me lately, like last week feeling a bit drained. Can you check my HRV for last week?",
+      "transcript": "USER: This air purifier is driving me nuts, totally nuts. The stupid filter light just keeps blinking and blinking and blinking. Make it stop, just make it stop.\nAGENT: I understand that's frustrating. When you say the filter light keeps blinking and you want it to stop, there are a couple of things I can help with:\n1) Just explain what the blinking means and how long you can keep using the filter.\n2) Walk you through actually resetting the filter status after you've replaced the filter.\nWhich one do you want me to do?\nUSER: I already changed the filter, I already changed it, twice! I don't care what the light \"means”, I want it gone, really gone. Just reset whatever needs resetting on this purifier, on this one right here.",
       "ground_truth": {
         "tool_calls": [
           {
-            "tool": "getHRV",
+            "tool": "resetFilterStatus",
             "parameters": {}
           }
         ]

@@ -6,47 +6,39 @@
   },
   "samples": [
     {
-      "audio_file": "speaker_05_3dspeaker_speaker_3D_SPK_10898.wav",
-      "transcript": "The air vent on the back right is blasting cold air",
+      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_00332.wav",
+      "transcript": "Is my car protected right now",
       "ground_truth": {
         "tool_calls": [
           {
-            "tool": "setZoneTemperature",
-            "parameters": {
-              "zone": "Rear_Right",
-              "temperature": "24.5"
-            }
+            "tool": "getSentryStatus",
+            "parameters": {}
           }
         ]
       },
       "reasoning": ""
     },
     {
-      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_07983.wav",
-      "transcript": "Wrapped in a blanket and still cold",
+      "audio_file": "speaker_01_3dspeaker_speaker_3D_SPK_10898.wav",
+      "transcript": "I'm not getting any power from the charger",
       "ground_truth": {
         "tool_calls": [
           {
-            "tool": "setThermostatMode",
-            "parameters": {
-              "deviceId": "thermostat_1",
-              "mode": "Heat"
-            }
+            "tool": "startCharging",
+            "parameters": {}
           }
         ]
       },
       "reasoning": ""
     },
     {
-      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_01062.wav",
-      "transcript": "I feel like my recovery has totally stalled this week",
+      "audio_file": "speaker_05_3dspeaker_speaker_3D_SPK_01831.wav",
+      "transcript": "It feels like it's stuck between gears",
       "ground_truth": {
         "tool_calls": [
           {
-            "tool": "getHRV",
-            "parameters": {
-              "period": "Last_Week"
-            }
+            "tool": "getGearSelection",
+            "parameters": {}
           }
         ]
       },

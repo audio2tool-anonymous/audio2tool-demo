@@ -6,12 +6,12 @@
   },
   "samples": [
     {
-      "audio_file": "speaker_05_3dspeaker_speaker_3D_SPK_10898.wav",
-      "transcript": "Set driver temp twenty five, no wait, twenty four",
+      "audio_file": "speaker_02_3dspeaker_speaker_3D_SPK_09998.wav",
+      "transcript": "Power on that outlet, never mind, I just want its power usage",
       "ground_truth": {
         "tool_calls": [
           {
-            "tool": "setZoneTemperature",
+            "tool": "setPowerState",
             "parameters": {}
           }
         ]
@@ -19,12 +19,12 @@
       "reasoning": ""
     },
     {
-      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_07983.wav",
-      "transcript": "Set the thermostat to heat, never mind, eco mode is better for tonight",
+      "audio_file": "speaker_02_3dspeaker_speaker_3D_SPK_01831.wav",
+      "transcript": "Set the regen to Low for now, hold on, keep it at Standard after all",
       "ground_truth": {
         "tool_calls": [
           {
-            "tool": "setThermostatMode",
+            "tool": "setRegenerativeBraking",
             "parameters": {}
           }
         ]
@@ -32,12 +32,12 @@
       "reasoning": ""
     },
     {
-      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_01062.wav",
-      "transcript": "Show HRV over last week, no wait, just yesterday's",
+      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_08647.wav",
+      "transcript": "Whats the status of microwave underscore one, no wait, microwave underscore two",
       "ground_truth": {
         "tool_calls": [
           {
-            "tool": "getHRV",
+            "tool": "getApplianceStatus",
             "parameters": {}
           }
         ]

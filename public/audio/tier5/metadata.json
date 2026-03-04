@@ -6,19 +6,6 @@
   },
   "samples": [
     {
-      "audio_file": "speaker_05_3dspeaker_speaker_3D_SPK_10898.wav",
-      "transcript": "This song always reminds me of college, good times. Man, I feel old. Um, it's a little hot on my side, can you set the driver's temp to sixteen degrees?",
-      "ground_truth": {
-        "tool_calls": [
-          {
-            "tool": "setZoneTemperature",
-            "parameters": {}
-          }
-        ]
-      },
-      "reasoning": ""
-    },
-    {
       "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_07983.wav",
       "transcript": "The room is not really hot or cold, I just want that soft background fan sound to fall asleep, so, like, can you put the thermostat into Fan_Only mode",
       "ground_truth": {
@@ -32,12 +19,25 @@
       "reasoning": ""
     },
     {
-      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_01062.wav",
-      "transcript": "Last week I quit energy drinks cold turkey, which gave me headaches, and I am hoping my body is recovering, so can you grab my HRV for the last week so I can see if it is improving",
+      "audio_file": "speaker_06_3dspeaker_speaker_3D_SPK_05228.wav",
+      "transcript": "This song always reminds me of college, good times. Man, I feel old. Um, it's a little hot on my side, can you set the driver's temp to sixteen degrees?",
       "ground_truth": {
         "tool_calls": [
           {
-            "tool": "getHRV",
+            "tool": "setZoneTemperature",
+            "parameters": {}
+          }
+        ]
+      },
+      "reasoning": ""
+    },
+    {
+      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_10898.wav",
+      "transcript": "My eyes are kinda tired from staring at spreadsheets all day and, uh, this harsh light is not helping, could you, you know, ramp the brightness down to 40 over two minutes",
+      "ground_truth": {
+        "tool_calls": [
+          {
+            "tool": "rampBrightness",
             "parameters": {}
           }
         ]

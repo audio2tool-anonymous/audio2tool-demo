@@ -6,43 +6,56 @@
   },
   "samples": [
     {
-      "audio_file": "speaker_05_3dspeaker_speaker_3D_SPK_10898.wav",
-      "transcript": "Driver climate twenty three degrees and fan level five",
+      "audio_file": "speaker_01_3dspeaker_speaker_3D_SPK_00332.wav",
+      "transcript": "Low regen braking and heat my seat to max",
       "ground_truth": {
         "tool_calls": [
           {
-            "tool": "setZoneTemperature",
+            "tool": "setRegenerativeBraking",
             "parameters": {
-              "zone": "Driver",
-              "temperature": "23.0"
+              "level": "Low"
             }
+          },
+          {
+            "tool": "setSeatComfort",
+            "parameters": {}
           }
         ]
       },
       "reasoning": ""
     },
     {
-      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_07983.wav",
-      "transcript": "Cool mode on thermostat at seventy degrees and ramp the bedroom lights to eighty percent over fifteen minutes",
+      "audio_file": "speaker_02_3dspeaker_speaker_3D_SPK_10898.wav",
+      "transcript": "Limit AC charging to twenty eight amps and warm up the steering wheel",
       "ground_truth": {
         "tool_calls": [
           {
-            "tool": "setThermostatMode",
+            "tool": "setChargingAmperage",
             "parameters": {
-              "mode": "Cool"
+              "amps": "28"
             }
+          },
+          {
+            "tool": "setSteeringWheelHeat",
+            "parameters": {}
           }
         ]
       },
       "reasoning": ""
     },
     {
-      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_01062.wav",
-      "transcript": "What is my H R V today, and make my phone ring",
+      "audio_file": "speaker_08_3dspeaker_speaker_3D_SPK_06428.wav",
+      "transcript": "Show power usage and change the light color to blue",
       "ground_truth": {
         "tool_calls": [
           {
-            "tool": "getHRV",
+            "tool": "getEnergyUsage",
+            "parameters": {
+              "deviceId": "main_meter"
+            }
+          },
+          {
+            "tool": "setColor",
             "parameters": {}
           }
         ]

@@ -6,20 +6,20 @@
   },
   "samples": [
     {
-      "audio_file": "speaker_06_3dspeaker_speaker_3D_SPK_10914.wav",
-      "transcript": "Disable the steering wheel heater and set the temperature to twenty point five degrees.",
+      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_09068.wav",
+      "transcript": "Launch arcade and turn on the HEPA air filter",
       "ground_truth": {
         "tool_calls": [
           {
-            "tool": "setZoneTemperature",
+            "tool": "launchInCarGaming",
             "parameters": {
-              "temperature": "20.5"
+              "game": "Arcade"
             }
           },
           {
-            "tool": "setSteeringWheelHeat",
+            "tool": "setAirQualityMode",
             "parameters": {
-              "enabled": "false"
+              "hepa": "True"
             }
           }
         ]
@@ -27,37 +27,37 @@
       "reasoning": ""
     },
     {
-      "audio_file": "speaker_06_3dspeaker_speaker_3D_SPK_04060.wav",
-      "transcript": "Camping mode and ventilate my seat please",
+      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_03314.wav",
+      "transcript": "Find food then turn off the steering wheel heater",
       "ground_truth": {
         "tool_calls": [
           {
-            "tool": "setCampingMode",
+            "tool": "searchPOI",
             "parameters": {
-              "enabled": "true"
+              "category": "Food"
             }
           },
           {
-            "tool": "setSeatComfort",
+            "tool": "setSteeringWheelHeat(on=false)",
+            "parameters": {
+              "on": "false"
+            }
+          }
+        ]
+      },
+      "reasoning": ""
+    },
+    {
+      "audio_file": "speaker_02_3dspeaker_speaker_3D_SPK_01062.wav",
+      "transcript": "Set the temperature to twenty four celsius and then check my internet speed.",
+      "ground_truth": {
+        "tool_calls": [
+          {
+            "tool": "runNetworkSpeedTest",
             "parameters": {}
-          }
-        ]
-      },
-      "reasoning": ""
-    },
-    {
-      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_07983.wav",
-      "transcript": "Set thermostat to Cool then dim the office lights to forty percent",
-      "ground_truth": {
-        "tool_calls": [
-          {
-            "tool": "setThermostatMode",
-            "parameters": {
-              "mode": "Cool"
-            }
           },
           {
-            "tool": "setBrightness",
+            "tool": "setTargetTemperature",
             "parameters": {}
           }
         ]
