@@ -2,18 +2,47 @@
   "tier_info": {
     "tier_number": 6,
     "name": "Correction",
-    "description": "Mid-utterance repair or correction; final state overrides earlier intent."
+    "description": ""
   },
   "samples": [
     {
-      "audio_file": "sample_6_001.wav",
-      "transcript": "Set an alarm for 7... wait, make it 8.",
+      "audio_file": "speaker_00_voxpopuli_speaker_124830.wav",
+      "transcript": "Set driver temp twenty five, no wait, twenty four",
       "ground_truth": {
         "tool_calls": [
-          { "tool": "set_alarm", "parameters": { "time": "08:00" } }
+          {
+            "tool": "setZoneTemperature",
+            "parameters": {}
+          }
         ]
       },
-      "reasoning": "The correction 'make it 8' overrides the initial 7; only the final value is used."
+      "reasoning": ""
+    },
+    {
+      "audio_file": "speaker_01_voxpopuli_speaker_129073.wav",
+      "transcript": "Set the thermostat to heat, never mind, eco mode is better for tonight",
+      "ground_truth": {
+        "tool_calls": [
+          {
+            "tool": "setThermostatMode",
+            "parameters": {}
+          }
+        ]
+      },
+      "reasoning": ""
+    },
+    {
+      "audio_file": "speaker_02_3dspeaker_speaker_3D_SPK_05744.wav",
+      "transcript": "Show HRV over last week, no wait, just yesterday's",
+      "ground_truth": {
+        "tool_calls": [
+          {
+            "tool": "getHRV",
+            "parameters": {}
+          }
+        ]
+      },
+      "reasoning": ""
     }
   ]
 }

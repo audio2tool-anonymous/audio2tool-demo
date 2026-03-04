@@ -2,18 +2,52 @@
   "tier_info": {
     "tier_number": 2,
     "name": "Parametric",
-    "description": "Commands requiring parameter or slot extraction."
+    "description": ""
   },
   "samples": [
     {
-      "audio_file": "sample_2_001.wav",
-      "transcript": "Set the temperature to 72.",
+      "audio_file": "speaker_00_voxpopuli_speaker_124830.wav",
+      "transcript": "Driver climate twenty three degrees and fan level five",
       "ground_truth": {
         "tool_calls": [
-          { "tool": "set_zone_temperature", "parameters": { "temperature": 72 } }
+          {
+            "tool": "setZoneTemperature",
+            "parameters": {
+              "zone": "Driver",
+              "temperature": "23.0"
+            }
+          }
         ]
       },
-      "reasoning": "Numeric value 72 is extracted and mapped to the temperature parameter."
+      "reasoning": ""
+    },
+    {
+      "audio_file": "speaker_01_voxpopuli_speaker_129073.wav",
+      "transcript": "Cool mode on thermostat at seventy degrees and ramp the bedroom lights to eighty percent over fifteen minutes",
+      "ground_truth": {
+        "tool_calls": [
+          {
+            "tool": "setThermostatMode",
+            "parameters": {
+              "mode": "Cool"
+            }
+          }
+        ]
+      },
+      "reasoning": ""
+    },
+    {
+      "audio_file": "speaker_02_3dspeaker_speaker_3D_SPK_05744.wav",
+      "transcript": "What is my H R V today, and make my phone ring",
+      "ground_truth": {
+        "tool_calls": [
+          {
+            "tool": "getHRV",
+            "parameters": {}
+          }
+        ]
+      },
+      "reasoning": ""
     }
   ]
 }

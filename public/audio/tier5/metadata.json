@@ -2,18 +2,47 @@
   "tier_info": {
     "tier_number": 5,
     "name": "Needle",
-    "description": "Long rambling speech with tangents; relevant intent must be filtered."
+    "description": ""
   },
   "samples": [
     {
-      "audio_file": "sample_5_001.wav",
-      "transcript": "So anyway I was thinking about the game last night, and then I remembered I need to pick up milk, and oh could you set the temperature to 68? We're almost there.",
+      "audio_file": "speaker_00_voxpopuli_speaker_124830.wav",
+      "transcript": "This song always reminds me of college, good times. Man, I feel old. Um, it's a little hot on my side, can you set the driver's temp to sixteen degrees?",
       "ground_truth": {
         "tool_calls": [
-          { "tool": "set_zone_temperature", "parameters": { "temperature": 68 } }
+          {
+            "tool": "setZoneTemperature",
+            "parameters": {}
+          }
         ]
       },
-      "reasoning": "Only the final clause carries the tool-relevant intent; the rest is irrelevant context."
+      "reasoning": ""
+    },
+    {
+      "audio_file": "speaker_01_voxpopuli_speaker_129073.wav",
+      "transcript": "The room is not really hot or cold, I just want that soft background fan sound to fall asleep, so, like, can you put the thermostat into Fan_Only mode",
+      "ground_truth": {
+        "tool_calls": [
+          {
+            "tool": "setThermostatMode",
+            "parameters": {}
+          }
+        ]
+      },
+      "reasoning": ""
+    },
+    {
+      "audio_file": "speaker_02_3dspeaker_speaker_3D_SPK_05744.wav",
+      "transcript": "Last week I quit energy drinks cold turkey, which gave me headaches, and I am hoping my body is recovering, so can you grab my HRV for the last week so I can see if it is improving",
+      "ground_truth": {
+        "tool_calls": [
+          {
+            "tool": "getHRV",
+            "parameters": {}
+          }
+        ]
+      },
+      "reasoning": ""
     }
   ]
 }

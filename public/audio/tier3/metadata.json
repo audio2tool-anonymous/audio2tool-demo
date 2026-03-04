@@ -2,19 +2,54 @@
   "tier_info": {
     "tier_number": 3,
     "name": "Multi-Intent",
-    "description": "Single utterances expressing multiple intents through coordination."
+    "description": ""
   },
   "samples": [
     {
-      "audio_file": "sample_3_001.wav",
-      "transcript": "Defrost the windshield and find a charger.",
+      "audio_file": "speaker_00_voxpopuli_speaker_124830.wav",
+      "transcript": "Driver zone twenty one degrees and turn on steering wheel heater",
       "ground_truth": {
         "tool_calls": [
-          { "tool": "defrost_windshield", "parameters": {} },
-          { "tool": "find_charging_station", "parameters": {} }
+          {
+            "tool": "setZoneTemperature",
+            "parameters": {
+              "zone": "Driver",
+              "temperature": "21.0"
+            }
+          }
         ]
       },
-      "reasoning": "The user specifies two distinct actions ('defrost' and 'find charger') connected by the coordinate conjunction 'and'."
+      "reasoning": ""
+    },
+    {
+      "audio_file": "speaker_01_voxpopuli_speaker_129073.wav",
+      "transcript": "Set thermostat to Cool then dim the office lights to forty percent",
+      "ground_truth": {
+        "tool_calls": [
+          {
+            "tool": "setThermostatMode",
+            "parameters": {
+              "mode": "Cool"
+            }
+          }
+        ]
+      },
+      "reasoning": ""
+    },
+    {
+      "audio_file": "speaker_02_3dspeaker_speaker_3D_SPK_05744.wav",
+      "transcript": "Show my heart rate variability for yesterday and also turn on do not disturb plus ring my paired phone",
+      "ground_truth": {
+        "tool_calls": [
+          {
+            "tool": "getHRV",
+            "parameters": {
+              "period": "Yesterday"
+            }
+          }
+        ]
+      },
+      "reasoning": ""
     }
   ]
 }

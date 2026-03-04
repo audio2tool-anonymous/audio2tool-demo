@@ -2,18 +2,47 @@
   "tier_info": {
     "tier_number": 7,
     "name": "Conversation",
-    "description": "Multi-turn dialogue; intent must be tracked across 4–8 turns."
+    "description": ""
   },
   "samples": [
     {
-      "audio_file": "sample_7_001.wav",
-      "transcript": "[Turn 1] Can you turn on the heat? [Turn 2] Actually just the driver side. [Turn 3] 72 degrees. [Turn 4] Thanks.",
+      "audio_file": "turn_00_user_3dspeaker_speaker_3D_SPK_05228.wav",
+      "transcript": "USER: Excuse me, can you help me with the temperature in the car? I'm feeling a bit warm.\nAGENT: I'd be happy to help you adjust the temperature. Which zone would you like to adjust the temperature for? We have Driver, Passenger, Rear Left, and Rear Right.\nUSER: Oh, um, I think it's the, uh, Passenger side that's too warm.\nAGENT: Alright! What temperature would you like to set it to? Please keep in mind it should be between 15.0 and 30.0 degrees.\nUSER: Ah, 22.0 degrees should be nice, thank you.",
       "ground_truth": {
         "tool_calls": [
-          { "tool": "set_zone_temperature", "parameters": { "zone": "driver", "temperature": 72 } }
+          {
+            "tool": "setZoneTemperature",
+            "parameters": {}
+          }
         ]
       },
-      "reasoning": "Intent is built across turns: heat → driver only → 72; final tool call merges all constraints."
+      "reasoning": ""
+    },
+    {
+      "audio_file": "turn_01_agent_yodas_speaker_z2hPI6d00BE.wav",
+      "transcript": "USER: I think it's a bit chilly in here, can you, uh, make it warmer?\nAGENT: You'd like to adjust the thermostat, but I'm not sure what mode you're referring to. Could you please clarify?\nUSER: Oh, I mean, can you set it to, um, 'Warming' mode?\nAGENT: I think there might be some confusion. The available modes are Heat, Cool, Auto, Off, Fan_Only, and Eco. Could you please choose one of these modes?\nUSER: Ah, I see! In that case, can you please set it to Heat mode?",
+      "ground_truth": {
+        "tool_calls": [
+          {
+            "tool": "setThermostatMode",
+            "parameters": {}
+          }
+        ]
+      },
+      "reasoning": ""
+    },
+    {
+      "audio_file": "turn_02_user_3dspeaker_speaker_3D_SPK_09068.wav",
+      "transcript": "USER: My watch keep talk about this HRV thing, but I not really catch what is it. It is like stress meter or just heart jumping counter?\nAGENT: Heart Rate Variability (HRV) is a measure of the tiny time differences between your heartbeats. It's often used as an indicator of how recovered or stressed your body is: generally, higher HRV means better recovery and adaptability, while lower HRV can mean fatigue, stress, or overtraining. Your watch looks at these variations over time to estimate things like stress, readiness, and sometimes even sleep quality. I can also pull your HRV numbers for a specific time frame if you want to see how it's been.\nUSER: Ah, ok, so more is not always bad then. Yesterday I also eat too much salty chips… maybe also break my HRV, haha. By the way, my friend just buy new smart ring, so shiny, looks like from space movie. Mine just boring rubber band. Anyway, I want to see how this HRV going for me lately, like last week feeling a bit drained. Can you check my HRV for last week?",
+      "ground_truth": {
+        "tool_calls": [
+          {
+            "tool": "getHRV",
+            "parameters": {}
+          }
+        ]
+      },
+      "reasoning": ""
     }
   ]
 }

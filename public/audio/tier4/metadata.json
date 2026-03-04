@@ -2,18 +2,55 @@
   "tier_info": {
     "tier_number": 4,
     "name": "Implicit",
-    "description": "Indirect or implied intent requiring pragmatic inference."
+    "description": ""
   },
   "samples": [
     {
-      "audio_file": "sample_4_001.wav",
-      "transcript": "I'm freezing.",
+      "audio_file": "speaker_00_voxpopuli_speaker_124830.wav",
+      "transcript": "The air vent on the back right is blasting cold air",
       "ground_truth": {
         "tool_calls": [
-          { "tool": "set_zone_temperature", "parameters": { "temperature": 75, "zone": "all" } }
+          {
+            "tool": "setZoneTemperature",
+            "parameters": {
+              "zone": "Rear_Right",
+              "temperature": "24.5"
+            }
+          }
         ]
       },
-      "reasoning": "User state implies a request to increase cabin temperature; no explicit command."
+      "reasoning": ""
+    },
+    {
+      "audio_file": "speaker_01_voxpopuli_speaker_129073.wav",
+      "transcript": "Wrapped in a blanket and still cold",
+      "ground_truth": {
+        "tool_calls": [
+          {
+            "tool": "setThermostatMode",
+            "parameters": {
+              "deviceId": "thermostat_1",
+              "mode": "Heat"
+            }
+          }
+        ]
+      },
+      "reasoning": ""
+    },
+    {
+      "audio_file": "speaker_02_3dspeaker_speaker_3D_SPK_05744.wav",
+      "transcript": "I feel like my recovery has totally stalled this week",
+      "ground_truth": {
+        "tool_calls": [
+          {
+            "tool": "getHRV",
+            "parameters": {
+              "period": "Last_Week"
+            }
+          }
+        ]
+      },
+      "reasoning": ""
     }
   ]
 }
