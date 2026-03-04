@@ -6,14 +6,28 @@
   },
   "samples": [
     {
-      "audio_file": "sample_8_001.wav",
-      "transcript": "Navigate home. [Other speaker] Set temperature to 72.",
+      "audio_file": "mixed_01.wav",
+      "transcript": "Stop the charging session and activate the highest air filtration mode. [Other speaker] Flash lights and ventilate my seat please",
       "ground_truth": {
         "tool_calls": [
-          { "tool": "navigate", "parameters": { "destination": "home" } }
+          { "tool": "setAirQualityMode", "parameters": {  } }
         ]
       },
-      "reasoning": "Primary driver intent is 'navigate home'; secondary speaker's temperature request is out of scope for the primary actor."
+      "reasoning": ""
+    },
+    {
+      "audio_file": "mixed_02.wav",
+      "transcript": "Turn on the speed cap and set passenger temperature to seventy two degree [Other speaker] We're done camping, turn off camp mode and flash the lights.",
+      "ground_truth": {
+        "tool_calls": [
+          { "tool": "setSpeedLimitMode", 
+          "parameters": { "mode": "On" } },
+          { "tool": "setZoneTemperature",
+          "parameters": { "zone": "Passenger", "temperature": "72.0" } }
+          
+        ]
+      },
+      "reasoning": ""
     }
   ]
 }

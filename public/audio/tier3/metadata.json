@@ -38,7 +38,7 @@
             }
           },
           {
-            "tool": "setSteeringWheelHeat(on=false)",
+            "tool": "setSteeringWheelHeat",
             "parameters": {
               "on": "false"
             }
