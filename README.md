@@ -58,6 +58,16 @@ The **Results & Figures** tab shows interactive figures from the paper (e.g. que
 
 Figures appear in a grid; clicking one opens a lightbox. Order in the list is the display order.
 
+## Taxonomy diagram
+
+The **Taxonomy** tab shows a static diagram (`public/taxonomy.svg`) of domains and categories. The CSV is not in the repo. To regenerate the diagram from your own CSV:
+
+```bash
+node scripts/generate-taxonomy-diagram.js path/to/taxonomy_tools_4.fixed.csv
+```
+
+This overwrites `public/taxonomy.svg`. Commit the new SVG if desired.
+
 ## Metadata format
 
 Each tier folder (`public/audio/tier1/` … `tier8/`) should contain:

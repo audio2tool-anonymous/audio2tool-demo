@@ -4,3 +4,7 @@ dist
 .DS_Store
 .env
 .env.*
+
+# Taxonomy source data — diagram is generated; only taxonomy.svg is in the repo
+taxonomy_tools_4.fixed.csv
+public/taxonomy_tools_4.fixed.csv
