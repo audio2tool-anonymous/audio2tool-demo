@@ -1,19 +1,19 @@
 [
   {
     "id": "fig1",
-    "file": "fig1_queries_per_tier.pdf",
+    "file": "fig1_queries_per_tier.png",
     "title": "Queries per tier",
     "caption": "Number of queries per complexity tier (total: 29,680)."
   },
   {
     "id": "fig2",
-    "file": "fig2_domain_per_tier.pdf",
+    "file": "fig2_domain_per_tier.png",
     "title": "Domain per tier",
     "caption": "Distribution of Smart Car, Smart Home, and Wearables across tiers."
   },
   {
     "id": "tier_h",
-    "file": "tier_creation_H.pdf",
+    "file": "tier_creation_H.png",
     "title": "Tier creation pipeline",
     "caption": "Overview of query generation for each complexity tier."
   }
