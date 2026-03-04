@@ -6,16 +6,40 @@
   },
   "samples": [
     {
-      "audio_file": "speaker_05_3dspeaker_speaker_3D_SPK_10898.wav",
-      "transcript": "Driver zone twenty one degrees and turn on steering wheel heater",
+      "audio_file": "speaker_06_3dspeaker_speaker_3D_SPK_10914.wav",
+      "transcript": "Disable the steering wheel heater and set the temperature to twenty point five degrees.",
       "ground_truth": {
         "tool_calls": [
           {
             "tool": "setZoneTemperature",
             "parameters": {
-              "zone": "Driver",
-              "temperature": "21.0"
+              "temperature": "20.5"
             }
+          },
+          {
+            "tool": "setSteeringWheelHeat",
+            "parameters": {
+              "enabled": "false"
+            }
+          }
+        ]
+      },
+      "reasoning": ""
+    },
+    {
+      "audio_file": "speaker_06_3dspeaker_speaker_3D_SPK_04060.wav",
+      "transcript": "Camping mode and ventilate my seat please",
+      "ground_truth": {
+        "tool_calls": [
+          {
+            "tool": "setCampingMode",
+            "parameters": {
+              "enabled": "true"
+            }
+          },
+          {
+            "tool": "setSeatComfort",
+            "parameters": {}
           }
         ]
       },
@@ -31,21 +55,10 @@
             "parameters": {
               "mode": "Cool"
             }
-          }
-        ]
-      },
-      "reasoning": ""
-    },
-    {
-      "audio_file": "speaker_03_3dspeaker_speaker_3D_SPK_01062.wav",
-      "transcript": "Show my heart rate variability for yesterday and also turn on do not disturb plus ring my paired phone",
-      "ground_truth": {
-        "tool_calls": [
+          },
           {
-            "tool": "getHRV",
-            "parameters": {
-              "period": "Yesterday"
-            }
+            "tool": "setBrightness",
+            "parameters": {}
           }
         ]
       },
