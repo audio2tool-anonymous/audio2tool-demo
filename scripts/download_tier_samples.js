@@ -153,6 +153,7 @@ function main() {
       numDataRows - 1,
     ];
     const samples = [];
+    const isTier7 = tier === 7;
 
     for (let sampleIdx = 0; sampleIdx < 3; sampleIdx++) {
       const rowIndex = rowIndices[sampleIdx];
@@ -178,23 +179,47 @@ function main() {
       const toolName = (rowToUse[toolNameIdx] || '').trim();
       const extractedParams = extractedIdx >= 0 ? parseParams((rowToUse[extractedIdx] || '').trim()) : {};
       if (!query || !toolName) continue;
-      // Pick a different speaker per sample: use sampleIdx to choose wav (0th, 1st, 2nd in 3dspeaker list)
-      const wavIndex = Math.min(sampleIdx, wavLines.length - 1);
-      const wavName = wavLines[wavIndex].trim().split(/\s+/).pop();
-      const s3Wav = `${S3_AUDIO_PREFIX}${folder}/${queryFolder}/${wavName}`;
-      const localWav = path.join(outDir, wavName);
 
-      console.log(`Tier ${tier} sample ${sampleIdx + 1} (query ${rowIndexToUse}, 3dspeaker ${wavIndex}): ${wavName}`);
-      run(`aws s3 cp "${s3Wav}" "${localWav}"`);
-
-      samples.push({
-        audio_file: wavName,
-        transcript: query,
-        ground_truth: {
-          tool_calls: [{ tool: toolName, parameters: extractedParams }],
-        },
-        reasoning: '',
-      });
+      if (isTier7) {
+        // Tier 7: download all turns for this conversation (sort by turn_00, turn_01, ...)
+        const wavNames = wavLines.map((l) => l.trim().split(/\s+/).pop()).filter(Boolean).sort();
+        const prefix = `conv${sampleIdx}_`;
+        const audioFiles = [];
+        for (let t = 0; t < wavNames.length; t++) {
+          const origName = wavNames[t];
+          const localName = prefix + origName;
+          const s3Wav = `${S3_AUDIO_PREFIX}${folder}/${queryFolder}/${origName}`;
+          const localWav = path.join(outDir, localName);
+          console.log(`Tier 7 sample ${sampleIdx + 1} turn ${t + 1}/${wavNames.length}: ${localName}`);
+          run(`aws s3 cp "${s3Wav}" "${localWav}"`);
+          audioFiles.push(localName);
+        }
+        samples.push({
+          audio_file: audioFiles[0],
+          audio_files: audioFiles,
+          transcript: query,
+          ground_truth: {
+            tool_calls: [{ tool: toolName, parameters: extractedParams }],
+          },
+          reasoning: '',
+        });
+      } else {
+        // Tiers 1–6: one WAV per sample (different speaker per sample)
+        const wavIndex = Math.min(sampleIdx, wavLines.length - 1);
+        const wavName = wavLines[wavIndex].trim().split(/\s+/).pop();
+        const s3Wav = `${S3_AUDIO_PREFIX}${folder}/${queryFolder}/${wavName}`;
+        const localWav = path.join(outDir, wavName);
+        console.log(`Tier ${tier} sample ${sampleIdx + 1} (query ${rowIndexToUse}, 3dspeaker ${wavIndex}): ${wavName}`);
+        run(`aws s3 cp "${s3Wav}" "${localWav}"`);
+        samples.push({
+          audio_file: wavName,
+          transcript: query,
+          ground_truth: {
+            tool_calls: [{ tool: toolName, parameters: extractedParams }],
+          },
+          reasoning: '',
+        });
+      }
     }
 
     const metadata = {

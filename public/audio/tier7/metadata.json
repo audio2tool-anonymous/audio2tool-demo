@@ -6,7 +6,12 @@
   },
   "samples": [
     {
-      "audio_file": "turn_00_user_3dspeaker_speaker_3D_SPK_05228.wav",
+      "audio_file": "conv0_turn_00_user_3dspeaker_speaker_3D_SPK_05228.wav",
+      "audio_files": [
+        "conv0_turn_00_user_3dspeaker_speaker_3D_SPK_05228.wav",
+        "conv0_turn_02_user_3dspeaker_speaker_3D_SPK_05228.wav",
+        "conv0_turn_04_user_3dspeaker_speaker_3D_SPK_05228.wav"
+      ],
       "transcript": "USER: Excuse me, can you help me with the temperature in the car? I'm feeling a bit warm.\nAGENT: I'd be happy to help you adjust the temperature. Which zone would you like to adjust the temperature for? We have Driver, Passenger, Rear Left, and Rear Right.\nUSER: Oh, um, I think it's the, uh, Passenger side that's too warm.\nAGENT: Alright! What temperature would you like to set it to? Please keep in mind it should be between 15.0 and 30.0 degrees.\nUSER: Ah, 22.0 degrees should be nice, thank you.",
       "ground_truth": {
         "tool_calls": [
@@ -19,7 +24,10 @@
       "reasoning": ""
     },
     {
-      "audio_file": "turn_01_agent_3dspeaker_speaker_3D_SPK_09044.wav",
+      "audio_file": "conv1_turn_01_agent_3dspeaker_speaker_3D_SPK_09044.wav",
+      "audio_files": [
+        "conv1_turn_01_agent_3dspeaker_speaker_3D_SPK_09044.wav"
+      ],
       "transcript": "USER: ugh… it's so hot in here\nAGENT: I can help with that. Sounds like you'd like the thermostat to start cooling. Do you want me to switch your thermostat to Cool mode?\nUSER: mm… yeah… put it on cool",
       "ground_truth": {
         "tool_calls": [
@@ -32,7 +40,12 @@
       "reasoning": ""
     },
     {
-      "audio_file": "turn_02_user_3dspeaker_speaker_3D_SPK_09068.wav",
+      "audio_file": "conv2_turn_00_user_3dspeaker_speaker_3D_SPK_09068.wav",
+      "audio_files": [
+        "conv2_turn_00_user_3dspeaker_speaker_3D_SPK_09068.wav",
+        "conv2_turn_01_agent_3dspeaker_speaker_3D_SPK_04703.wav",
+        "conv2_turn_02_user_3dspeaker_speaker_3D_SPK_09068.wav"
+      ],
       "transcript": "USER: My watch keep talk about this HRV thing, but I not really catch what is it. It is like stress meter or just heart jumping counter?\nAGENT: Heart Rate Variability (HRV) is a measure of the tiny time differences between your heartbeats. It's often used as an indicator of how recovered or stressed your body is: generally, higher HRV means better recovery and adaptability, while lower HRV can mean fatigue, stress, or overtraining. Your watch looks at these variations over time to estimate things like stress, readiness, and sometimes even sleep quality. I can also pull your HRV numbers for a specific time frame if you want to see how it's been.\nUSER: Ah, ok, so more is not always bad then. Yesterday I also eat too much salty chips… maybe also break my HRV, haha. By the way, my friend just buy new smart ring, so shiny, looks like from space movie. Mine just boring rubber band. Anyway, I want to see how this HRV going for me lately, like last week feeling a bit drained. Can you check my HRV for last week?",
       "ground_truth": {
         "tool_calls": [

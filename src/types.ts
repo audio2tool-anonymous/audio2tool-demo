@@ -9,6 +9,8 @@ export interface GroundTruth {
 
 export interface Sample {
   audio_file: string
+  /** Tier 7 (multiturn): one file per turn in order. When set, UI shows all turns. */
+  audio_files?: string[]
   transcript: string
   ground_truth: GroundTruth
   reasoning: string

@@ -21,16 +21,26 @@ interface SampleCardProps {
   onPlayRequest: (ws: WaveSurfer) => void
 }
 
-function SampleCard({ sample, tierSlug, onPlayRequest }: SampleCardProps) {
+/** Single waveform + play for one audio file (used for single-file samples or one turn in multiturn). */
+function TurnPlayer({
+  file,
+  tierSlug,
+  turnLabel,
+  onPlayRequest,
+}: {
+  file: string
+  tierSlug: string
+  turnLabel?: string
+  onPlayRequest: (ws: WaveSurfer) => void
+}) {
   const containerRef = useRef<HTMLDivElement>(null)
   const wavesurferRef = useRef<WaveSurfer | null>(null)
   const [playing, setPlaying] = useState(false)
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    if (!containerRef.current || !sample.audio_file) return
-
-    const url = getAudioUrl(tierSlug, sample.audio_file)
+    if (!containerRef.current || !file) return
+    const url = getAudioUrl(tierSlug, file)
     const ws = WaveSurfer.create({
       container: containerRef.current,
       waveColor: '#3b82f6',
@@ -43,18 +53,16 @@ function SampleCard({ sample, tierSlug, onPlayRequest }: SampleCardProps) {
       normalize: true,
       url,
     })
-
     ws.on('ready', () => setReady(true))
     ws.on('play', () => setPlaying(true))
     ws.on('pause', () => setPlaying(false))
     ws.on('finish', () => setPlaying(false))
-
     wavesurferRef.current = ws
     return () => {
       ws.destroy()
       wavesurferRef.current = null
     }
-  }, [tierSlug, sample.audio_file])
+  }, [tierSlug, file])
 
   const handlePlayClick = () => {
     const ws = wavesurferRef.current
@@ -64,8 +72,11 @@ function SampleCard({ sample, tierSlug, onPlayRequest }: SampleCardProps) {
   }
 
   return (
-    <div className="rounded-xl border border-zinc-200 bg-white overflow-hidden shadow-sm">
-      <div className="flex items-stretch gap-3 p-3">
+    <div className={turnLabel ? 'space-y-1' : ''}>
+      {turnLabel && (
+        <p className="text-xs font-medium text-zinc-500">{turnLabel}</p>
+      )}
+      <div className="flex items-stretch gap-3">
         <button
           type="button"
           onClick={handlePlayClick}
@@ -83,6 +94,28 @@ function SampleCard({ sample, tierSlug, onPlayRequest }: SampleCardProps) {
           ref={containerRef}
           className="flex-1 min-h-[72px] rounded-lg bg-zinc-100 border border-zinc-200 overflow-hidden"
         />
+      </div>
+    </div>
+  )
+}
+
+function SampleCard({ sample, tierSlug, onPlayRequest }: SampleCardProps) {
+  const files = (sample.audio_files && sample.audio_files.length > 0)
+    ? sample.audio_files
+    : (sample.audio_file ? [sample.audio_file] : [])
+
+  return (
+    <div className="rounded-xl border border-zinc-200 bg-white overflow-hidden shadow-sm">
+      <div className="p-3 space-y-4">
+        {files.map((file, idx) => (
+          <TurnPlayer
+            key={file}
+            file={file}
+            tierSlug={tierSlug}
+            turnLabel={files.length > 1 ? `Turn ${idx + 1}` : undefined}
+            onPlayRequest={onPlayRequest}
+          />
+        ))}
       </div>
       <div className="px-4 pb-4 pt-1 space-y-3">
         <p className="text-sm text-zinc-700 rounded-lg bg-zinc-50 p-3 border border-zinc-200">
